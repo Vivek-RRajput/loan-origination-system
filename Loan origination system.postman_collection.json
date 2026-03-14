@@ -1,0 +1,72 @@
+{
+  "info": {
+    "_postman_id": "11fa9686-cf90-4c7e-9660-daa0fe621218",
+    "name": "Loan origination system",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "41667116"
+  },
+  "item": [
+    {
+      "name": "Create a loan request",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"customerName\": \"Rahul Sharma\",\r\n  \"customerPhone\": \"9876543210\",\r\n  \"loanAmount\": 50000,\r\n  \"loanType\": \"PERSONAL\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8080/api/v1/loans",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8080",
+          "path": [
+            "api",
+            "v1",
+            "loans"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get Loans by Status (Pagination)",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Get Loan Status Count",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Get Top Customers",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Agent Decision on Loan",
+      "request": {
+        "method": "PUT",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
