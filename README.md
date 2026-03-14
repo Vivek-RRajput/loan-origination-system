@@ -256,8 +256,7 @@ or
 ```
 
 ---
-
-# 🧪 Running Unit Tests
+## 🧪 Running Unit Tests
 
 Run all test cases:
 
@@ -268,7 +267,7 @@ mvn test
 Example output:
 
 ```
-Tests run: 2
+Tests run: 7
 Failures: 0
 Errors: 0
 BUILD SUCCESS
@@ -276,14 +275,15 @@ BUILD SUCCESS
 
 ---
 
-# 🧪 Example Test Cases
+## 🧪 Example Test Cases
 
 ### Test Loan Creation
 
 Validates:
 
-* DTO to Entity conversion
-* Repository save invocation
+- DTO → Entity conversion
+- Loan default status set to **APPLIED**
+- Repository `save()` invocation
 
 ---
 
@@ -291,9 +291,100 @@ Validates:
 
 Validates:
 
-* Pagination
-* Service → Repository interaction
+- Pagination support
+- Service → Repository interaction
+- Correct loans returned for requested status
 
+---
+
+## 🧪 Agent Service Tests
+
+### Test Agent Approve Loan
+
+Validates:
+
+- Agent is correctly assigned to the loan
+- Loan status changes from **UNDER_REVIEW → APPROVED_BY_AGENT**
+- Service logic updates entity state correctly
+
+---
+
+### Test Agent Reject Loan
+
+Validates:
+
+- Loan status changes from **UNDER_REVIEW → REJECTED_BY_AGENT**
+- Agent decision is processed correctly
+
+---
+
+### Test Agent Decision Invalid Status
+
+Validates:
+
+- Agent cannot approve or reject a loan that is **not in UNDER_REVIEW**
+- Runtime exception is thrown when decision is invalid
+
+---
+
+## 🧪 Loan Processing Service Tests
+
+### Test System Auto Approval
+
+Validates:
+
+- Loan is processed by system rules
+- Loan status changes to **APPROVED_BY_SYSTEM**
+- Notification service sends customer SMS
+
+---
+
+### Test System Auto Rejection
+
+Validates:
+
+- Loan is rejected automatically when rules fail
+- Loan status changes to **REJECTED_BY_SYSTEM**
+
+---
+
+### Test Loan Sent for Manual Review
+
+Validates:
+
+- Loan status changes to **UNDER_REVIEW**
+- Agent is assigned automatically
+- Notification is sent to the assigned agent
+
+---
+
+## ✅ What These Tests Ensure
+
+These tests ensure:
+
+- Service layer business logic works correctly
+- Repository interactions are properly mocked
+- Loan lifecycle transitions are validated
+- Agent decision flow is tested
+- Notification service integration is verified
+
+---
+
+## 📊 Test Coverage
+
+Core services covered:
+
+- LoanService
+- Agent decision logic
+- Loan processing engine
+- Notification interactions
+
+Coverage includes:
+
+- Business rules
+- Status transitions
+- Repository interaction
+- Exception handling
 ---
 
 # 🧑‍💻 Author
