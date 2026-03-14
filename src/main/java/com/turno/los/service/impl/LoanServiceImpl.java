@@ -105,7 +105,7 @@ public class LoanServiceImpl implements LoanService {
             LoanStatus status,
             int page,
             int size) {
-
+        size = Math.min(size, 50); //to handle a pagination limits
         Pageable pageable = PageRequest.of(page, size);
 
         return loanRepository

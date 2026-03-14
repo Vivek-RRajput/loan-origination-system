@@ -1,10 +1,17 @@
 package com.turno.los.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Positive;
+import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.NonNull;
 
 import java.time.LocalDateTime;
 
+@NoArgsConstructor
+@AllArgsConstructor
 @Data
 @Entity
 @Table(
@@ -22,8 +29,11 @@ public class Loan {
 
     private String customerName;
 
+    @NonNull
     private String customerPhone;
 
+    @NotBlank
+    @Positive
     private Double loanAmount;
 
     @Enumerated(EnumType.STRING)
@@ -37,4 +47,7 @@ public class Loan {
     @ManyToOne
     @JoinColumn(name = "agent_id")
     private Agent agent;
+
+    @Version
+    private Long version;
 }

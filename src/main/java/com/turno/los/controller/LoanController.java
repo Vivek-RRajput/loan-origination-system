@@ -4,6 +4,7 @@ import com.turno.los.dto.LoanRequest;
 import com.turno.los.entity.Loan;
 import com.turno.los.entity.LoanStatus;
 import com.turno.los.service.LoanService;
+import jakarta.validation.Valid;
 import org.springframework.data.domain.Page;
 import org.springframework.web.bind.annotation.*;
 
@@ -20,7 +21,7 @@ public class LoanController {
     }
 
     @PostMapping
-    public Loan submitLoan(@RequestBody LoanRequest request) {
+    public Loan submitLoan(@Valid @RequestBody LoanRequest request) {
         return loanService.createLoan(request);
     }
 
