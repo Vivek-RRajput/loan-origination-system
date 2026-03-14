@@ -299,11 +299,4 @@ Validates:
 
 **Vivek Rajput**
 
-Backend Developer
-Oracle Banking Payments
 
----
-
-# ⭐ If you like this project
-
-Give it a ⭐ on GitHub!
