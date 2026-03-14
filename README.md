@@ -1,94 +1,311 @@
-# Loan Origination System
+# 🚀 Loan Origination System
 
-Spring Boot backend application that simulates a loan origination workflow.
+A **Spring Boot backend application** that simulates a **Loan Origination System (LOS)** used in banking systems to manage loan applications, approvals, and analytics.
 
-## Features
+This system allows users to:
 
-- Loan submission API
-- Agent approval workflow
-- Multi-threaded loan processing
-- Notification service
-- Loan status analytics
-- Pagination support
+* Submit loan applications
+* Track loan status
+* Approve/Reject loans via agents
+* Retrieve loan analytics
+* Fetch top customers
+* Use pagination for loan records
 
-## Tech Stack
+---
 
-- Java 17
-- Spring Boot 3
-- Spring Data JPA
-- H2 / MySQL
-- Maven
+# 🧰 Tech Stack
 
-## APIs
+| Technology      | Usage                        |
+| --------------- | ---------------------------- |
+| Java 17         | Core Programming Language    |
+| Spring Boot 3   | Backend Framework            |
+| Spring Data JPA | ORM for database interaction |
+| MySQL / H2      | Database                     |
+| Maven           | Build tool                   |
+| JUnit 5         | Unit Testing                 |
+| Mockito         | Mocking framework            |
+| Git             | Version Control              |
 
-Submit Loan
+---
 
-POST /api/v1/loans
+# ✨ Features
 
-Loan Status Count
+✅ Submit loan application
+✅ Agent approval workflow
+✅ Loan status tracking
+✅ Pagination support for loan listing
+✅ Top customer analytics
+✅ Unit testing with Mockito
+✅ Clean layered architecture (Controller → Service → Repository)
 
-GET /api/v1/loans/status-count
+---
 
-Loans by Status
+# 📂 Project Structure
 
-GET /api/v1/loans?status=APPLIED&page=0&size=10
+```
+loan-origination-system
+│
+├── controller
+├── service
+├── repository
+├── entity
+├── dto
+├── exception
+│
+├── src/test/java
+│   └── unit tests
+│
+├── pom.xml
+└── README.md
+```
 
-Top Customers
+---
 
-GET /api/v1/customers/top
+# ⚙️ Prerequisites
 
-Agent Decision
+Before running the project make sure you have installed:
 
-PUT /api/v1/agents/{agentId}/loans/{loanId}/decision
+* Java 17+
+* Maven
+* MySQL (optional if using H2)
+* Git
+* IntelliJ IDEA / Eclipse
 
-## Run Application
+---
 
+# 📥 Clone the Repository
 
+```bash
+git clone https://github.com/YOUR_USERNAME/loan-origination-system.git
+```
 
+Navigate to the project folder
 
+```bash
+cd loan-origination-system
+```
 
-## Postman Collection
+---
 
-Create collection called:
+# 🗄️ Database Setup
 
+## Option 1 — MySQL (Recommended)
 
-Loan Origination System
+### Step 1: Create Database
 
+Login to MySQL and run:
 
-Add APIs:
+```sql
+CREATE DATABASE loan_system;
+```
 
-1️⃣ Submit Loan
+---
 
-POST /api/v1/loans
+### Step 2: Configure Database Credentials
 
+Open:
 
-Body
+```
+src/main/resources/application.properties
+```
 
+Update values:
+
+```
+spring.datasource.url=jdbc:mysql://localhost:3306/loan_system
+spring.datasource.username=YOUR_DB_USERNAME
+spring.datasource.password=YOUR_DB_PASSWORD
+
+spring.jpa.hibernate.ddl-auto=update
+spring.jpa.show-sql=true
+```
+
+---
+
+## Option 2 — H2 Database (In Memory)
+
+If using H2:
+
+```
+spring.datasource.url=jdbc:h2:mem:testdb
+spring.datasource.driverClassName=org.h2.Driver
+spring.datasource.username=sa
+spring.datasource.password=
+```
+
+---
+
+# ▶️ Run the Application
+
+### Build the Project
+
+```bash
+mvn clean install
+```
+
+### Start Spring Boot Application
+
+```bash
+mvn spring-boot:run
+```
+
+Application will start at:
+
+```
+http://localhost:8080
+```
+
+---
+
+# 📡 API Endpoints
+
+## 1️⃣ Submit Loan Application
+
+**POST**
+
+```
+/api/v1/loans
+```
+
+### Request Body
+
+```json
 {
-"customerName": "Rahul",
-"customerPhone": "9876543210",
-"loanAmount": 50000,
-"loanType": "PERSONAL"
+  "customerName": "Rahul Sharma",
+  "customerPhone": "9876543210",
+  "loanAmount": 50000,
+  "loanType": "PERSONAL"
 }
-2️⃣ Loan Status Count
+```
 
-GET /api/v1/loans/status-count
+---
 
-3️⃣ Get Loans by Status
+## 2️⃣ Get Loans by Status (Pagination)
 
-GET /api/v1/loans?status=APPLIED&page=0&size=5
+**GET**
 
-4️⃣ Top Customers
+```
+/api/v1/loans?status=APPLIED&page=0&size=5
+```
 
-GET /api/v1/customers/top
+### Example
 
-5️⃣ Agent Decision
+```
+/api/v1/loans?status=APPROVED&page=0&size=10
+```
 
-PUT /api/v1/agents/{agentId}/loans/{loanId}/decision
+---
 
+## 3️⃣ Get Loan Status Count
 
-Body
+**GET**
 
+```
+/api/v1/loans/status-count
+```
+
+Response example:
+
+```json
 {
-"decision": "APPROVE"
+  "APPLIED": 5,
+  "APPROVED": 3,
+  "REJECTED": 1
 }
+```
+
+---
+
+## 4️⃣ Get Top Customers
+
+**GET**
+
+```
+/api/v1/customers/top
+```
+
+---
+
+## 5️⃣ Agent Decision on Loan
+
+**PUT**
+
+```
+/api/v1/agents/{agentId}/loans/{loanId}/decision
+```
+
+Example:
+
+```
+/api/v1/agents/1/loans/4/decision
+```
+
+### Request Body
+
+```json
+{
+  "decision": "APPROVE"
+}
+```
+
+or
+
+```json
+{
+  "decision": "REJECT"
+}
+```
+
+---
+
+# 🧪 Running Unit Tests
+
+Run all test cases:
+
+```bash
+mvn test
+```
+
+Example output:
+
+```
+Tests run: 2
+Failures: 0
+Errors: 0
+BUILD SUCCESS
+```
+
+---
+
+# 🧪 Example Test Cases
+
+### Test Loan Creation
+
+Validates:
+
+* DTO to Entity conversion
+* Repository save invocation
+
+---
+
+### Test Loan Filtering by Status
+
+Validates:
+
+* Pagination
+* Service → Repository interaction
+
+---
+
+# 🧑‍💻 Author
+
+**Vivek Rajput**
+
+Backend Developer
+Oracle Banking Payments
+
+---
+
+# ⭐ If you like this project
+
+Give it a ⭐ on GitHub!
