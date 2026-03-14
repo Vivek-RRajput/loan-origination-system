@@ -10,9 +10,12 @@ import com.turno.los.service.LoanService;
 import com.turno.los.service.NotificationService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 
 import org.springframework.data.domain.Pageable;
+import org.springframework.web.server.ResponseStatusException;
+
 import java.time.LocalDateTime;
 import java.util.HashMap;
 import java.util.List;
@@ -61,6 +64,13 @@ public class LoanServiceImpl implements LoanService {
         if (!loan.getAgent().getAgentId().equals(agentId)) {
 
             throw new RuntimeException("Agent not assigned to this loan");
+        }
+
+        if (loan.getApplicationStatus() != LoanStatus.UNDER_REVIEW) {
+            throw new ResponseStatusException(
+                    HttpStatus.CONFLICT,
+                    "Loan already processed"
+            );
         }
 
         if ("APPROVE".equalsIgnoreCase(decision)) {

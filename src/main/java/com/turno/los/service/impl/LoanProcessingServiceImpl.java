@@ -46,7 +46,7 @@ public class LoanProcessingServiceImpl implements LoanProcessingService {
         }
     }
 
-    private void processLoan(Loan loan) {
+    public void processLoan(Loan loan) {
 
         try {
 
