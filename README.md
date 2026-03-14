@@ -5,7 +5,8 @@ A **Spring Boot backend application** that simulates a **Loan Origination System
 This system allows users to:
 
 * Submit loan applications
-* Track loan status
+* Track loan status via notification
+* Loan Status Monitoring
 * Approve/Reject loans via agents
 * Retrieve loan analytics
 * Fetch top customers
