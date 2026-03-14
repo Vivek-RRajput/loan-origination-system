@@ -34,7 +34,18 @@
           ]
         }
       },
-      "response": []
+      "response": [
+        {
+          "loanId": 8,
+          "customerName": "Mohit Sharma",
+          "customerPhone": "9876543210",
+          "loanAmount": 50090.0,
+          "loanType": "PERSONAL",
+          "applicationStatus": "APPLIED",
+          "createdAt": "2026-03-14T15:09:01.8397199",
+          "agent": null
+        }
+      ]
     },
     {
       "name": "Get Loans by Status (Pagination)",
@@ -42,7 +53,47 @@
         "method": "GET",
         "header": []
       },
-      "response": []
+      "response": [
+        {
+          "content": [
+            {
+              "loanId": 8,
+              "customerName": "Mohit Sharma",
+              "customerPhone": "9876543210",
+              "loanAmount": 50090.0,
+              "loanType": "PERSONAL",
+              "applicationStatus": "APPLIED",
+              "createdAt": "2026-03-14T15:09:01.83972",
+              "agent": null
+            }
+          ],
+          "pageable": {
+            "pageNumber": 0,
+            "pageSize": 5,
+            "sort": {
+              "empty": true,
+              "sorted": false,
+              "unsorted": true
+            },
+            "offset": 0,
+            "paged": true,
+            "unpaged": false
+          },
+          "last": true,
+          "totalPages": 1,
+          "totalElements": 1,
+          "size": 5,
+          "number": 0,
+          "sort": {
+            "empty": true,
+            "sorted": false,
+            "unsorted": true
+          },
+          "first": true,
+          "numberOfElements": 1,
+          "empty": false
+        }
+      ]
     },
     {
       "name": "Get Loan Status Count",
@@ -50,7 +101,14 @@
         "method": "GET",
         "header": []
       },
-      "response": []
+      "response": [
+        {
+          "APPROVED_BY_AGENT": 1,
+          "APPROVED_BY_SYSTEM": 1,
+          "REJECTED_BY_SYSTEM": 1,
+          "UNDER_REVIEW": 5
+        }
+      ]
     },
     {
       "name": "Get Top Customers",
@@ -58,7 +116,15 @@
         "method": "GET",
         "header": []
       },
-      "response": []
+      "response": [
+        [
+          [
+            "Rahul Sharma",
+            1
+          ]
+        ]
+
+      ]
     },
     {
       "name": "Agent Decision on Loan",
@@ -66,7 +132,9 @@
         "method": "PUT",
         "header": []
       },
-      "response": []
+      "response": [
+        "Decision recorded successfully"
+      ]
     }
   ]
 }
