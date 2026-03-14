@@ -86,8 +86,8 @@ cd loan-origination-system
 ```
 
 ---
-
-# 🗄️ Database Setup
+# ▶️ Run the Application
+## 🗄️ Database Setup
 
 ## Option 1 — MySQL (Recommended)
 
@@ -134,8 +134,6 @@ spring.datasource.password=
 ```
 
 ---
-
-# ▶️ Run the Application
 
 ### Build the Project
 
